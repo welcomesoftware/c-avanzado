@@ -98,7 +98,7 @@ FUNCIÓN RecorrerLista(l: Lista)
     
     apuntador = l.cabeza
 
-    MIENTRAS (apuntador != NULO)
+    MIENTRAS (apuntador.siguiente != NULO)
         ProcesarElemento(apuntador.elemento)
         apuntador = apuntador.siguiente
     FIN MIENTRAS
@@ -111,9 +111,7 @@ FIN FUNCIÓN
 ```
 FUNCIÓN InsertarNodo(l: Lista, n: Nodo)
 
-    SI (l == NULO)
-        l.cabeza = NULO
-
+    SI (l.cabeza == NULO)
         VARIABLE nuevoNodo: Nodo
 
         nuevoNodo.elemento = n
@@ -130,7 +128,6 @@ FIN FUNCIÓN
 FUNCIÓN InsertarPrincipio(l: Lista, n: Nodo)
     VARIABLE nuevoNodo: Nodo
 
-    nuevoNodo.elementos = n
     nuevoNodo.siguiente = l.cabeza
     l.cabeza = nuevoNodo
 FIN FUNCIÓN    
@@ -141,9 +138,6 @@ FIN FUNCIÓN
 ```
 FUNCIÓN InsertarFinal(l: Lista, n: Nodo)
     VARIABLE nuevoNodo: Nodo
-    
-    nuevoNodo.elemento = n
-    nuevoNodo.siguiente = NULO
 
     SI (l.cabeza == NULO)
         l.cabeza = nuevoNodo
@@ -152,18 +146,42 @@ FUNCIÓN InsertarFinal(l: Lista, n: Nodo)
 
         apuntador = l.cabeza
 
-        MIENTRAS (apuntador != NULO)
+        MIENTRAS (apuntador.siguiente != NULO)
             apuntador = apuntador.siguiente
         FIN MIENTRAS
 
-        apuntador.siguiente.siguiente = nuevoNodo
-
+        apuntador.siguiente = nuevoNodo
     FIN SI
 
 FIN FUNCIÓN
 ```
 
-5. Eliminar el primer elemento de una lista.
+5. Insertar elementos despues de.
+
+```
+FUNCIÓN InsertarDespues(l: Lista, n: Nodo, p: posicion)
+    VARIABLE nuevoNodo: Nodo
+    
+    SI (LISTAVACIA(l))
+        l.cabeza = nuevoNodo
+    SINO 
+        VARIABLE apuntador: Nodo
+
+        apuntador = l.cabeza
+
+        MIENTRAS (apuntador != p)
+            apuntador = apuntador.siguiente
+        FIN MIENTRAS
+
+        nuevoNodo.siguiente = apuntador.siguiente
+        apuntador.siguiente = nuevoNodo
+    FIN SI
+
+FIN FUNCIÓN
+```
+
+
+6. Eliminar el primer elemento de una lista.
 
 ```
 FUNCIÓN EliminarPrimero(l: Lista)
@@ -176,7 +194,7 @@ FUNCIÓN EliminarPrimero(l: Lista)
 FIN FUNCIÓN
 ```
 
-6. Eliminar el ultimo elemento de la lista.
+7. Eliminar el ultimo elemento de la lista.
 
 ```
 FUNCIÓN EliminarUltimo(l: Lista)
@@ -195,7 +213,7 @@ FUNCIÓN EliminarUltimo(l: Lista)
 FIN FUNCIÓN
 ```
 
-7. Eliminar un elemento especifico de la lista.
+8. Eliminar un elemento especifico de la lista.
 
 ```
 FUNCIÓN EliminarElemento(l: Lista, e: elemento)
