@@ -7,5 +7,5 @@ tipos de información más compleja.
 
 ## Tipos de estructuras de datos
 
-1. Listas enlazadas
-2. Colas
+1. [Listas enlazadas](listas/readme.md)
+2. [Colas enlazadas](colas/readme.md)
